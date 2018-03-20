@@ -18,7 +18,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +37,8 @@ public class SecondActivity extends AppCompatActivity {
     private News a;
     private DatePickerDialog.OnDateSetListener notesDate;
     String chosenDate;
+    Integer i = 0, d = 0;
+    String likes, dislikes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class SecondActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         int newsID = getIntent().getExtras().getInt("newsID");
 
@@ -63,6 +65,31 @@ public class SecondActivity extends AppCompatActivity {
 
             TextView date1 = findViewById(R.id.tv_newsdate);
             date1.setText(a.getDate());
+
+            Button like = (Button)findViewById(R.id.button_like);
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    i++;
+                }
+            });
+
+            Button dislike = (Button) findViewById(R.id.button_dislike);
+            dislike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    d++;
+                }
+            });
+
+            likes = "Likes " + i;
+            TextView likes1 = findViewById(R.id.tv_likes);
+            likes1.setText(likes);
+
+            dislikes = "Dislikes " + d;
+            TextView dislikes1 = findViewById(R.id.tv_dislikes);
+            dislikes1.setText(dislikes);
+
 
 
         } catch (SQLException e) {
@@ -225,4 +252,5 @@ public class SecondActivity extends AppCompatActivity {
             databaseHelper = null;
         }
     }
+
 }

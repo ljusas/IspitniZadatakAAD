@@ -56,13 +56,46 @@
             android:layout_below="@id/tv_newsauthor"
             android:textSize="18dp"/>
 
+        <TextView
+            android:id="@+id/tv_likes"
+            android:text="@string/likes"
+            android:layout_width="90sp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_newsdate"/>
+
+        <Button
+            android:id="@+id/button_like"
+            android:text="@string/like"
+            android:layout_width="100sp"
+            android:layout_marginStart="29dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_likes"/>
+
         <ListView
             android:id="@+id/list_coment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_below="@id/tv_newsdate">
+            android:layout_below="@id/button_like">
         </ListView>
+
+        <Button
+            android:id="@+id/button_dislike"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tv_likes"
+            android:layout_marginEnd="29dp"
+            android:text="@string/dislike" />
+
+        <TextView
+            android:id="@+id/tv_dislikes"
+            android:layout_width="90sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_newsdate"
+            android:layout_centerHorizontal="true"
+            android:text="@string/dislikes" />
 
     </RelativeLayout>
 

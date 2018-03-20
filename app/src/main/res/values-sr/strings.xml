@@ -104,4 +104,10 @@
     <string name="coment_saved">Komentar je snimljen</string>
     <string name="news_saved">Vest je snimljena</string>
     <string name="all_news_are">Sve vesti su izlistane u glavnoj aktivnosti nakon dodavanja.</string>
+    <string name="information_agency">Informaciona agencija</string>
+    <string name="like">Svidja</string>
+    <string name="dislike">Nesvidja</string>
+    <string name="likes">Svidjanja</string>
+    <string name="dislikes">Nesvidjanja</string>
+    <string name="clik_for_date">Klikni za datum</string>
 </resources>

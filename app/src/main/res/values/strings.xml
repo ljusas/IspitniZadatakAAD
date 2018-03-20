@@ -105,4 +105,10 @@
     <string name="coment_saved">Coment inserted</string>
     <string name="news_saved">News inserted</string>
     <string name="all_news_are">All news are listed on main activity after adding.</string>
+    <string name="information_agency">Information agency</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="likes">Likes</string>
+    <string name="dislikes">Dislikes</string>
+    <string name="clik_for_date">Clik for date</string>
 </resources>
