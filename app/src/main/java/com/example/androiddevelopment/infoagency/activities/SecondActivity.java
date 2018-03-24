@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class SecondActivity extends AppCompatActivity {
     String chosenDate;
     Integer i = 0, d = 0;
     String likes, dislikes;
+    Uri imageUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,10 @@ public class SecondActivity extends AppCompatActivity {
 
         try {
             a = getDatabaseHelper().getNewsDao().queryForId(newsID);
+
+            ImageView image1 = findViewById(R.id.tv_image);
+            imageUri = Uri.parse(a.getImage());
+            image1.setImageURI(imageUri);
 
             TextView name1 = findViewById(R.id.tv_newsname);
             name1.setText(a.getName());
@@ -70,7 +78,7 @@ public class SecondActivity extends AppCompatActivity {
             like.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    i++;
+                    likeIncrement();
                 }
             });
 
@@ -78,19 +86,9 @@ public class SecondActivity extends AppCompatActivity {
             dislike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    d++;
+                    dislikeIncerment();
                 }
             });
-
-            likes = "Likes " + i;
-            TextView likes1 = findViewById(R.id.tv_likes);
-            likes1.setText(likes);
-
-            dislikes = "Dislikes " + d;
-            TextView dislikes1 = findViewById(R.id.tv_dislikes);
-            dislikes1.setText(dislikes);
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,6 +119,21 @@ public class SecondActivity extends AppCompatActivity {
         }
     }
 
+    private void dislikeIncerment() {
+        d++;
+        dislikes = "Dislikes " + d;
+        TextView dislikes1 = findViewById(R.id.tv_dislikes);
+        dislikes1.setText(dislikes);
+    }
+
+    private void likeIncrement() {
+        i++;
+        likes = "Likes " + i;
+        TextView likes1 = findViewById(R.id.tv_likes);
+        likes1.setText(likes);
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.second_menu, menu);
@@ -138,7 +151,8 @@ public class SecondActivity extends AppCompatActivity {
             final EditText comentTitle = dialog.findViewById(R.id.coment_title);
             final EditText comentDescription = dialog.findViewById(R.id.coment_description);
             final EditText comentAuthor = dialog.findViewById(R.id.coment_author);
-            final TextView comentDate = dialog.findViewById(R.id.coment_date);
+            final EditText choosenDate = dialog.findViewById(R.id.choosen_comment_date);
+            final  Button comentDate = dialog.findViewById(R.id.click_comment_date);
 
             comentDate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,6 +177,7 @@ public class SecondActivity extends AppCompatActivity {
                 public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                     month = month + 1;
                     chosenDate = String.format("%s/%d/%d", year, month, day);
+                    choosenDate.setText(chosenDate);
                 }
             };
 

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/IspitniZadatakAAD-master.iml" filepath="$PROJECT_DIR$/IspitniZadatakAAD-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zadatak.iml" filepath="$PROJECT_DIR$/zadatak.iml" />
+      <module fileurl="file://D:\AAD workspace\IspitniZadatakAAD-master\zadatak.iml" filepath="D:\AAD workspace\IspitniZadatakAAD-master\zadatak.iml" />
     </modules>
   </component>
 </project>

@@ -18,6 +18,7 @@ public class News {
     public static final String FIELD_NAME_DESCRIPTION   = "description";
     public static final String FIELD_NAME_AUTHOR   = "author";
     public static final String FIELD_NAME_DATE   = "date";
+    public static final String FIELD_NAME_IMAGE   = "image";
     public static final String FIELD_NAME_COMENT = "coment";
 
     @DatabaseField(columnName = FIELD_NAME_ID, generatedId = true)
@@ -34,6 +35,9 @@ public class News {
 
     @DatabaseField(columnName = FIELD_NAME_DATE)
     private String date;
+
+    @DatabaseField(columnName = FIELD_NAME_IMAGE)
+    private String image;
 
     @ForeignCollectionField(columnName = News.FIELD_NAME_COMENT, eager = true)
     private ForeignCollection<Coment> coments;
@@ -81,6 +85,13 @@ public class News {
         this.date = date;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public ForeignCollection<Coment> getComents() {
         return coments;
