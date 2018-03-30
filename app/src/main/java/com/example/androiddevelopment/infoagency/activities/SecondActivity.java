@@ -114,6 +114,23 @@ public class SecondActivity extends AppCompatActivity {
                 }
             });
 
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Coment cd = (Coment) listView.getItemAtPosition(position);
+                    try {
+                        getDatabaseHelper().getComentDao().delete(cd);
+                        Toast.makeText(SecondActivity.this, "Coment deleted", Toast.LENGTH_SHORT).show();
+                        refreshComent();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    return true;
+                }
+            });
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

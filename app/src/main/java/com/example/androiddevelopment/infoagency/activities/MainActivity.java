@@ -99,6 +99,21 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    News nd = (News) listView.getItemAtPosition(position);
+
+                    try {
+                        getDatabaseHelper().getNewsDao().delete(nd);
+                        Toast.makeText(MainActivity.this, "News deleted", Toast.LENGTH_SHORT).show();
+                        refresh();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -171,8 +186,6 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-
-
             Button ok = dialog.findViewById(R.id.button_news_add);
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -202,9 +215,7 @@ public class MainActivity extends AppCompatActivity
                     dialog.dismiss();
                 }
             });
-
             dialog.show();
-
         }
 
         return super.onOptionsItemSelected(item);
