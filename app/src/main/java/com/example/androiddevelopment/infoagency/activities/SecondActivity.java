@@ -43,7 +43,6 @@ public class SecondActivity extends AppCompatActivity {
     String likes, dislikes;
     Uri imageUri;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,6 @@ public class SecondActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         int newsID = getIntent().getExtras().getInt("newsID");
 
@@ -125,8 +123,6 @@ public class SecondActivity extends AppCompatActivity {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
-
                     return true;
                 }
             });
@@ -199,7 +195,6 @@ public class SecondActivity extends AppCompatActivity {
             };
 
             Button ok = dialog.findViewById(R.id.button_coment_add);
-
             ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -213,7 +208,6 @@ public class SecondActivity extends AppCompatActivity {
                     coment.setAuthor(author);
                     coment.setDate(chosenDate);
                     coment.setNews(a);
-
 
                     try {
                         getDatabaseHelper().getComentDao().create(coment);
@@ -236,11 +230,7 @@ public class SecondActivity extends AppCompatActivity {
             });
 
             dialog.show();
-
-
-
         }
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -284,5 +274,4 @@ public class SecondActivity extends AppCompatActivity {
             databaseHelper = null;
         }
     }
-
 }

@@ -111,4 +111,5 @@
     <string name="likes">Likes</string>
     <string name="dislikes">Dislikes</string>
     <string name="clik_for_date">Clik for date</string>
+    <string name="are_you_sure_you_want_to_delete_news">Are you sure you want to delete news!</string>
 </resources>

@@ -110,4 +110,5 @@
     <string name="likes">Svidjanja</string>
     <string name="dislikes">Nesvidjanja</string>
     <string name="clik_for_date">Klikni za datum</string>
+    <string name="are_you_sure_you_want_to_delete_news">Are you sure you want to delete news!</string>
 </resources>

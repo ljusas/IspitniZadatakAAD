@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private final static int PICK_IMAGE = 100;
     Uri imageUri;
     ImageView image;
+    News nd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,15 +103,37 @@ public class MainActivity extends AppCompatActivity
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    News nd = (News) listView.getItemAtPosition(position);
+                    nd = (News) listView.getItemAtPosition(position);
 
-                    try {
-                        getDatabaseHelper().getNewsDao().delete(nd);
-                        Toast.makeText(MainActivity.this, "News deleted", Toast.LENGTH_SHORT).show();
-                        refresh();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    final Dialog delete = new Dialog(MainActivity.this);
+                    delete.setContentView(R.layout.delete_news);
+
+                    TextView confirmation = (TextView) delete.findViewById(R.id.tv_delete_news);
+                    Button no = (Button) delete.findViewById(R.id.button_no);
+                    Button yes = (Button) delete.findViewById(R.id.button_yes);
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            delete.dismiss();
+                        }
+                    });
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            try {
+                                getDatabaseHelper().getNewsDao().delete(nd);
+                                Toast.makeText(MainActivity.this, "News deleted", Toast.LENGTH_SHORT).show();
+                                refresh();
+                                delete.dismiss();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    delete.show();
                     return true;
                 }
             });
@@ -194,14 +217,12 @@ public class MainActivity extends AppCompatActivity
                     String description = newsDescription.getText().toString();
                     String author = newsAuthor.getText().toString();
 
-
                     News news = new News();
                     news.setName(name);
                     news.setDescription(description);
                     news.setAuthor(author);
                     news.setDate(chosenDate);
                     news.setImage(imageUri.toString());
-
 
                     try {
                         getDatabaseHelper().getNewsDao().create(news);
